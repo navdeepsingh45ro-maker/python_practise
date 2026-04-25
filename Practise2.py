@@ -17,15 +17,25 @@ def show_summary(expenses):
     print(f"Maximum Expense: {max_expense}")
     print(f"Minimum Expense: {min_expense}")
 
-def add_expense(amount, category, date):
+def add_expense(expenses):
     amount = int(input("Enter the amount: "))
     category = input("Enter the category: ")
-    date = date.today()
-    expenses.append({"Amount": amount, "Category": category, "Date": date})
+    time = date.today()
+    expenses.append({"Amount": amount, "Category": category, "Date": time})
     
     
-add_expense(0, "", date.today())
-        
+
+while True:  
+   add_expense(expenses)
+   add_more = input("Do you want to add more expenses? Press 1 for Yes and 0 for No:  ")
+   if add_more == "1":
+       add_expense(expenses)
+   elif add_more == "0":
+       break
+   else:
+       print("Invalid input. Please enter 1 for Yes and 0 for No.")
+       
+
 want_summary = int(input("Do You want to see the summary? Enter 1 for Yes and 0 for No: "))
 if want_summary ==1:
     show_summary(expenses)
