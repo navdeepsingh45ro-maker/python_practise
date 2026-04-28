@@ -59,11 +59,31 @@ WHERE skills LIKE '%python%';
 SELECT title, salary FROM jobs 
 WHERE salary BETWEEN 30000 AND 45000;
 
+-- CHALLENGES 
+
+-- Challenge 1: Show all jobs with salary between 30000 and 45000
 SELECT COUNT(*) AS python_jobs FROM jobs
 WHERE skills LIKE '%python%';
 
-SELECT id, name, location FROM companies 
-JOIN jobs ON companies.id = jobs.company_id;
+-- Challenge 2: Count how many jobs require Python
+SELECT jobs.title, companies.location FROM jobs
+JOIN companies ON jobs.company_id = companies.id
+WHERE location LIKE '%bangalore%';
+
+-- Challenge 3: Show company names and job titles — only companies in Bangalore
+SELECT jobs.id, jobs.title, companies.name
+FROM jobs
+JOIN companies ON jobs.company_id = companies.id;
+
+-- Challenge 4: Show the highest paying job title and its salary
+SELECT title, salary FROM jobs
+ORDER BY salary DESC
+LIMIT 1;
+
+-- Challenge 5: Show all jobs ordered by title alphabetically
+SELECT title FROM jobs
+ORDER BY title;
+
 
 
 
