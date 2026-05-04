@@ -18,6 +18,23 @@ def get_db():
 
 app = FastAPI()
 
+@app.get("/top_skills")
+def get_top_skills():
+    conn = get_db()
+    cursor = conn.cursor(dictionary = True)
+    cursor.execute("SELECT skills FROM jobs") 
+    rows = cursor.fetchall()
+    conn.close()
+
+    skill_count = {}
+    for row in rows:
+        skills = row["skills"].split(",")
+        for skill in skills:
+            skill = skill.strip()
+            skill_count[skill] = skill_count.get(skill, 0) + 1
+    sorted_skills = sorted(skill_count.items(), key=lambda x: x[1], reverse=True)
+    return {"top_skills": [{"skill":s, "count":c} for s, c in sorted_skills]}
+
 @app.get("/")
 def home():
     return {"Message": "Job Tracker is running"}
