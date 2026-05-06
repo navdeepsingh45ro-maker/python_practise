@@ -14,8 +14,10 @@ def get_db():
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME")
-   )
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
+        ssl_disabled=True
+    )
     return conn
 
 app = FastAPI()
@@ -88,9 +90,9 @@ def create_job(job: JobCreate):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
-        conn.close()
+        if conn:
+            conn.close()
 
 import uvicorn 
 if __name__ == "__main__":
     uvicorn.run("api:app", host="0.0.0.0", port=8000)
-    
