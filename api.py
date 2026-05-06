@@ -16,7 +16,6 @@ def get_db():
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME"),
         port=int(os.getenv("DB_PORT", 3306)),
-        ssl_disabled=True
     )
     return conn
 
