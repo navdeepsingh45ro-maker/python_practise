@@ -19,3 +19,23 @@ A CLI-based expense tracker with:
 - try/except error handling
 - while loops and CLI menus
 
+# Job Tracker API
+
+A REST API built with FastAPI and MySQL that tracks job listings 
+and analyzes in-demand skills.
+
+## Live API
+https://job-tracker-api-9jie.onrender.com
+
+## Endpoints
+- GET /jobs — all job listings
+- GET /jobs?skill=Python — filter by skill
+- GET /jobs/{id} — single job
+- GET /top_skills — most in-demand skills
+- POST /jobs — add new job listing
+
+## Tech Stack
+- Python, FastAPI, MySQL, Railway, Render
+
+## Docs
+https://job-tracker-api-9jie.onrender.com/docs
